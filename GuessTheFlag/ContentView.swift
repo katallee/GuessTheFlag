@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var playerScore = 0
     @State private var scoreMessage = ""
+    @State private var turns = 0
     
     var body: some View {
         ZStack {
@@ -39,7 +40,7 @@ struct ContentView: View {
                             .shadow(color: .black, radius: 2)
                     }
                 }
-                Text("Score: \(playerScore)").foregroundColor(.white) .font(.headline)
+                Text("Score: \(playerScore)/\(turns)").foregroundColor(.white) .font(.headline)
                 Spacer()
             }
         }
@@ -54,11 +55,11 @@ struct ContentView: View {
         if number == correctAnswer {
             scoreTitle = "Correct"
             playerScore += 1
-            //added code to add 100 points to score if answer is correct
-            
+            //added code to add 1 points to score if answer is correct
         } else {
             scoreTitle = "Wrong"
         }
+        turns += 1
         scoreMessage = "That is the flag of \(countries[number])."
         showingScore = true
     }
